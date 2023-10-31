@@ -6,11 +6,11 @@
 
 Object detection dataset:
 ```
-
+Uploading...
 ```
 Image classification dataset:
 ```
-
+Uploading...
 ```
 ### 1.2 Place dataset to correct directory
 
@@ -24,17 +24,12 @@ dataset
 Image classification dataset: `train/classification/dataset`
 ```
 dataset
-├── aegypti
-├── albopictus
-└── yolo_f0_raw
+├── origin_dataset
+└── inaturalist
 ```
 ## 2. Object Detection Model
 
-### 2.1 Modify your dataset path
-Modify the train/val path in `train/detection/data/coco_mos_extra_f0.yaml`, make sure the directory is correct
-
-
-### 2.2 Train
+### 2.1 Train
  
 ```
 cd train/detection
@@ -44,23 +39,35 @@ get your best model under `train/detection/runs/train` directory
 
 ## 3. Image Classification Model
 
-### 3.1 Train
+### 3.1 Pretrain Model Prepare
+
+Download pretrain model from following link
+
+```
+https://drive.google.com/file/d/17sUNST7ivQhonBAfZEiTOLAgtaHa4F3e/view?usp=sharing
+```
+Place `metafg_2_inat21_384.pth` at `train/classification`
+
+### 3.2 Train
 Using following commands, you will get 10 models from 10 train/val splits
 ```
 cd train/classification
 sh batch_train.sh
 ```
-### 3.2 Model Soup
-using `avg_ckpt.py` to get uniform soup model from 10 models
+### 3.3 Model Soup
+Using following commands, you will get uniform soup model from 10 models
+```
+cd train/classification
+python avg_ckpt.py {your_args}
+```
+
 
 ## 4. Dataset Introduction
 
 ### Object Detection
 
-Extra dataset(aegypti, albopictus) is collected in iNaturalist, and bbox of mosquito is labeled manually.
+The original dataset underwent the removal of images containing multiple mosquitoes, and bounding boxes were manually refined. Additionally, an additional dataset was compiled from iNaturalist, featuring Aedes aegypti and Aedes albopictus species, with mosquito bounding boxes also being manually labeled.
 
 ### Image Classification
 
-In original dataset, images with noisy label are deleted.
-
-Extra dataset is collected in Inaturalist, the class of each mosquito is double-checked manually.
+In the original dataset, images with noisy labels were eliminated. An additional dataset was acquired from iNaturalist, and the mosquito class for each entry was meticulously verified through manual inspection.
