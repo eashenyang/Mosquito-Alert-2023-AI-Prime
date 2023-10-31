@@ -1,0 +1,32 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -m torch.distributed.launch --nproc_per_node=8 train_v1.1.py \
+splits \
+--input-size 3 384 384 \
+--dataset file_list \
+--train-split phase2_fixed_fold_$1_train_raw_png_cleaned_v3 \
+--val-split phase2_fixed_fold_$1_val_raw_png_cleaned_v3 \
+--num-classes 6 \
+--batch-size 24 \
+--amp \
+--bce-loss \
+--model MetaFG_2_mldecoder \
+--sched cosine \
+--warmup-epochs 10 \
+--epochs 100 \
+--lr 0.0001 \
+--remode pixel \
+--reprob 0.3 \
+--vflip 0.5 \
+--mixup 0.6 \
+--cutmix 0.5 \
+--mixup-mode batch \
+--aa rand-m9-mstd0.5-inc1 \
+--resplit \
+--split-bn \
+--dist-bn reduce \
+--smoothing 0.1 \
+--eval-metric macro_f1 \
+--opt adamw \
+--decay-rate 0.05 \
+--drop-path 0.2 \
+--initial-checkpoint metafg_2_inat21_384.pth \
+--scale 0.8 1.0

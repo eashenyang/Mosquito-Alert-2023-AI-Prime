@@ -1,0 +1,8 @@
+train: [splits/phase2_fixed_fold_0_train_raw.txt,
+        dataset/aegypti,
+        dataset/albopictus]
+val: splits/phase2_fixed_fold_0_val_raw.txt
+
+# Classes
+names:
+  0: mosquito

@@ -1,0 +1,1 @@
+python -m torch.distributed.run --nproc_per_node 8 --master_port 10010 train.py --data data/coco_mos_extra_f0.yaml --weights yolov5s.pt --img 640 --device 0,1,2,3,4,5,6,7 --batch-size 64 --sync-bn --name v5s_extra_f0
