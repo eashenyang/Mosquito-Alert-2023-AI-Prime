@@ -6,11 +6,11 @@
 
 Object detection dataset:
 ```
-Uploading...
+https://www.kaggle.com/datasets/eashenyang/mosquito-alert-2023-detection
 ```
 Image classification dataset:
 ```
-Uploading...
+https://www.kaggle.com/datasets/eashenyang/mosquito-alert-2023-classification
 ```
 ### 1.2 Place dataset to correct directory
 
